@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
 
 namespace TodoApp
 {
@@ -27,11 +29,19 @@ namespace TodoApp
         {
             InitializeComponent();
 
-            backingCollection.Add(new ToDo() { Description = "Something" });
-            backingCollection.Add(new ToDo() { Description = "Something Else" });
+            FileInfo toDoFile = new FileInfo("ToDoItemsStore.txt");
+            using (var stream = toDoFile.OpenText())
+            {
+                while (!stream.EndOfStream)
+                {
+                    string line = stream.ReadLine();
+                    string[] stuff = line.Split(',');
+                    backingCollection.Add(new ToDo() { Priority = int.Parse(stuff[0]), Description = stuff[1] });
+                }
+            }
         }
 
-        public ObservableCollection<ToDo> Items 
+        public ObservableCollection<ToDo> Items
         {
             get
             {
@@ -44,9 +54,10 @@ namespace TodoApp
             if (currentlySelected != null && currentlySelected is ToDo)
             {
                 var todo = currentlySelected as ToDo;
-                backingCollection.Remove(todo);
                 todo.Priority++;
+                backingCollection.Remove(todo);
                 backingCollection.Add(todo);
+                MyListView.SelectedItem = todo;
             }
         }
 
@@ -55,9 +66,10 @@ namespace TodoApp
             if (currentlySelected != null && currentlySelected is ToDo)
             {
                 var todo = currentlySelected as ToDo;
-                backingCollection.Remove(todo);
                 todo.Priority--;
+                backingCollection.Remove(todo);
                 backingCollection.Add(todo);
+                MyListView.SelectedItem = todo;
             }
         }
 
@@ -71,6 +83,23 @@ namespace TodoApp
             {
                 currentlySelected = null;
             }
+        }
+
+        private void SaveClick(object sender, RoutedEventArgs e)
+        {
+            FileInfo toDoFile = new FileInfo("ToDoItemsStore.txt");
+            using (var stream = toDoFile.CreateText())
+            {
+                foreach (ToDo todo in backingCollection)
+                {
+                    stream.WriteLine(string.Format("{0},{1}", todo.Priority, todo.Description));
+                }
+            }
+        }
+
+        private void AddClick(object sender, RoutedEventArgs e)
+        {
+            backingCollection.Add(new ToDo() { Priority = 0, Description = "Description" });
         }
     }
 }

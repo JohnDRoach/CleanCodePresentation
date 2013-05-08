@@ -12,7 +12,7 @@
         </CollectionViewSource>
     </Window.Resources>
     <StackPanel Orientation="Vertical">
-        <ListView ItemsSource="{Binding Source={StaticResource BindToMe}}" SelectionMode="Single" SelectionChanged="ListView_SelectionChanged">
+        <ListView Name="MyListView" ItemsSource="{Binding Source={StaticResource BindToMe}}" SelectionMode="Single" SelectionChanged="ListView_SelectionChanged">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="1" Margin="2" Padding="5">
@@ -26,5 +26,7 @@
         </ListView>
         <Button Click="UpClick">Up</Button>
         <Button Click="DownClick">Down</Button>
+        <Button Click="AddClick">Add</Button>
+        <Button Click="SaveClick">Save</Button>
     </StackPanel>
 </Window>
