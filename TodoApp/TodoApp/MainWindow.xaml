@@ -6,9 +6,9 @@
         Title="MainWindow" Height="350" Width="525">
     <Window.Resources>
         <CollectionViewSource Source="{Binding Items}" x:Key="BindToMe">
-            <CollectionViewSource.SortDescriptions>
+            <!--<CollectionViewSource.SortDescriptions>
                 <scm:SortDescription PropertyName="Priority" />
-            </CollectionViewSource.SortDescriptions>
+            </CollectionViewSource.SortDescriptions>-->
         </CollectionViewSource>
     </Window.Resources>
     <StackPanel Orientation="Vertical">

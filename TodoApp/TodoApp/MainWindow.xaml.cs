@@ -39,6 +39,8 @@ namespace TodoApp
                     backingCollection.Add(new ToDo() { Priority = int.Parse(stuff[0]), Description = stuff[1] });
                 }
             }
+
+            SortCollection();
         }
 
         public ObservableCollection<ToDo> Items
@@ -58,6 +60,7 @@ namespace TodoApp
                 backingCollection.Remove(todo);
                 backingCollection.Add(todo);
                 MyListView.SelectedItem = todo;
+                SortCollection();
             }
         }
 
@@ -70,6 +73,7 @@ namespace TodoApp
                 backingCollection.Remove(todo);
                 backingCollection.Add(todo);
                 MyListView.SelectedItem = todo;
+                SortCollection();
             }
         }
 
@@ -100,6 +104,15 @@ namespace TodoApp
         private void AddClick(object sender, RoutedEventArgs e)
         {
             backingCollection.Add(new ToDo() { Priority = 0, Description = "Description" });
+            SortCollection();
+        }
+
+        private void SortCollection()
+        {
+            var blah = backingCollection.OrderBy(x => x.Priority).ToList();
+            backingCollection.Clear();
+            foreach (var indigo in blah)
+                backingCollection.Add(indigo);
         }
     }
 }
