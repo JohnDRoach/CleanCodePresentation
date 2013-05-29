@@ -26,6 +26,14 @@ namespace GameOfLife.Tests
             CellIsDead(AfterEvolving());
         }
 
+        [Test]
+        public void CellWithTwoNeighbourDies()
+        {
+            GivenCellWithThisManyNeighbours(2);
+
+            CellIsAlive(AfterEvolving());
+        }
+
         
         private IList<Cell> neighbours = new List<Cell>()
         {
