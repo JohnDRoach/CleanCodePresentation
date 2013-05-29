@@ -11,6 +11,15 @@ namespace GameOfLife.Tests
     public class TestFixture1
     {
         [Test]
+        public void CellWithNoNeighboursDies()
+        {
+            bool[,] world = new bool[3, 3];
+            world[1, 1] = true;
+
+            Assert.IsFalse(new Incubator(world).Evolve()[1, 1]);
+        }
+
+        [Test]
         public void CellWithOneNeighbourDies()
         {
             bool[,] world = new bool[3, 3];
