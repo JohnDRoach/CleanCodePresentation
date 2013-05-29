@@ -39,6 +39,7 @@ namespace GameOfLife
                 {
                     if (LiesInWorld(i, j) && current[i, j])
                     {
+                        //NOTE: Can comment out this if statement to make 1 test fail (tis the 3 cell test)
                         if (x != i || y != j)
                         {
                             aliveNeighbourCount++;
