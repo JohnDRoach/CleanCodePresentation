@@ -8,18 +8,18 @@ using GameOfLife;
 namespace GameOfLife.Tests
 {
     [TestFixture]
-    public class AliveCellTests : CellTestFixture
+    public class DeadCellTests : CellTestFixture
     {
         protected override bool StateOfCell
         {
             get
             {
-                return Alive;
+                return Dead;
             }
         }
 
         [Test]
-        public void CellWithNoNeighboursDies()
+        public void CellWithNoNeighboursStaysDead()
         {
             GivenCellWithThisManyNeighbours(0);
 
@@ -27,7 +27,7 @@ namespace GameOfLife.Tests
         }
 
         [Test]
-        public void CellWithOneNeighbourDies()
+        public void CellWithOneNeighbourStaysDead()
         {
             GivenCellWithThisManyNeighbours(1);
 
@@ -35,15 +35,15 @@ namespace GameOfLife.Tests
         }
 
         [Test]
-        public void CellWithTwoNeighboursSurvives()
+        public void CellWithTwoNeighboursStaysDead()
         {
             GivenCellWithThisManyNeighbours(2);
 
-            CellIsAlive(AfterEvolving());
+            CellIsDead(AfterEvolving());
         }
 
         [Test]
-        public void CellWithThreeNeighboursSurvives()
+        public void CellWithThreeNeighboursIsReborn()
         {
             GivenCellWithThisManyNeighbours(3);
 
@@ -51,7 +51,7 @@ namespace GameOfLife.Tests
         }
 
         [Test]
-        public void CellWithFourNeighboursDies()
+        public void CellWithFourNeighboursStaysDead()
         {
             GivenCellWithThisManyNeighbours(4);
 
@@ -59,7 +59,7 @@ namespace GameOfLife.Tests
         }
 
         [Test]
-        public void CellWithFiveNeighboursDies()
+        public void CellWithFiveNeighboursStaysDead()
         {
             GivenCellWithThisManyNeighbours(5);
 
@@ -67,7 +67,7 @@ namespace GameOfLife.Tests
         }
 
         [Test]
-        public void CellWithSixNeighboursDies()
+        public void CellWithSixNeighboursStaysDead()
         {
             GivenCellWithThisManyNeighbours(6);
 
@@ -75,7 +75,7 @@ namespace GameOfLife.Tests
         }
 
         [Test]
-        public void CellWithSevenNeighboursDies()
+        public void CellWithSevenNeighboursStaysDead()
         {
             GivenCellWithThisManyNeighbours(7);
 
@@ -83,7 +83,7 @@ namespace GameOfLife.Tests
         }
 
         [Test]
-        public void CellWithEightNeighboursDies()
+        public void CellWithEightNeighboursStaysDead()
         {
             GivenCellWithThisManyNeighbours(8);
 
