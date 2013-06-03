@@ -39,7 +39,10 @@ namespace GameOfLife
                 {
                     if (LiesInWorld(i, j) && current[i, j])
                     {
-                        aliveNeighbourCount++;
+                        if (x != i || y != j)
+                        {
+                            aliveNeighbourCount++;
+                        }
                     }
                 }
             }
