@@ -12,6 +12,10 @@ namespace GameOfLife.Tests
         protected const bool Dead = false;
         protected abstract bool StateOfCell { get; }
 
+        protected CellTestFixture Given { get { return this; } }
+        protected CellTestFixture When { get { return this; } }
+        protected CellTestFixture Then { get { return this; } }
+
         protected IList<Cell> neighbours = new List<Cell>()
         {
             new Cell(0,0),
